@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bin Management | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/binmanagement.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+<div class="dashboard-container">
+
+
+    <!-- ==========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-recycle"></i>
+
+            <h2>Smart Waste</h2>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/binmanagement" class="active">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Bin Management
+
+            </a>
+
+
+            <a href="/collection">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Collection Trucks
+
+            </a>
+
+
+            <a href="/routes">
+
+                <i class="fa-solid fa-route"></i>
+
+                Routes
+
+            </a>
+
+
+            <a href="/reports">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reports
+
+            </a>
+
+
+            <a href="/users">
+
+                <i class="fa-solid fa-users"></i>
+
+                Users
+
+            </a>
+
+
+            <a href="/">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Bin Management</h1>
+
+                <p>
+                    Manage all smart waste bins across Canberra.
+                </p>
+
+                <small>
+                    Wednesday, 5 August 2026
+                </small>
+
+            </div>
+
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell"></i>
+
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==========================================
+             CONTROLS
+        ========================================== -->
+
+        <section class="controls">
+
+
+            <button class="btn-add" id="addBinBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add New Bin
+
+            </button>
+
+
+            <div class="search-section">
+
+                <input
+                    type="text"
+                    id="binSearch"
+                    placeholder="Search Bin ID or Location">
+
+
+                <button id="filterBtn">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    Filter
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TABLE
+        ========================================== -->
+
+        <section class="table-section">
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Bin ID</th>
+
+                        <th>Location</th>
+
+                        <th>Fill Level</th>
+
+                        <th>Status</th>
+
+                        <th>Last Collection</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="binTableBody">
+
+
+                    <!-- BIN 001 -->
+
+                    <tr>
+
+                        <td>BIN001</td>
+
+                        <td>Canberra CBD</td>
+
+                        <td>91%</td>
+
+                        <td>
+
+                            <span class="status full">
+                                Full
+                            </span>
+
+                        </td>
+
+                        <td>08:20 AM</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Bin">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Bin">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- BIN 002 -->
+
+                    <tr>
+
+                        <td>BIN002</td>
+
+                        <td>Belconnen</td>
+
+                        <td>56%</td>
+
+                        <td>
+
+                            <span class="status normal">
+                                Normal
+                            </span>
+
+                        </td>
+
+                        <td>09:10 AM</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Bin">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Bin">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- BIN 003 -->
+
+                    <tr>
+
+                        <td>BIN003</td>
+
+                        <td>Gungahlin</td>
+
+                        <td>12%</td>
+
+                        <td>
+
+                            <span class="status empty">
+                                Empty
+                            </span>
+
+                        </td>
+
+                        <td>10:00 AM</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Bin">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Bin">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- BIN 004 -->
+
+                    <tr>
+
+                        <td>BIN004</td>
+
+                        <td>Woden</td>
+
+                        <td>85%</td>
+
+                        <td>
+
+                            <span class="status full">
+                                Full
+                            </span>
+
+                        </td>
+
+                        <td>07:50 AM</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Bin">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Bin">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+
+            <!-- ==========================================
+                 BOTTOM BAR
+            ========================================== -->
+
+            <div class="bottom-bar">
+
+                <p id="binCount">
+                    Showing 1–4 of 4 bins
+                </p>
+
+
+                <div class="pagination">
+
+                    <button id="prevPage">
+                        Previous
+                    </button>
+
+
+                    <button
+                        class="active-page page-btn">
+                        1
+                    </button>
+
+
+                    <button class="page-btn">
+                        2
+                    </button>
+
+
+                    <button class="page-btn">
+                        3
+                    </button>
+
+
+                    <button class="page-btn">
+                        4
+                    </button>
+
+
+                    <button id="nextPage">
+                        Next
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ==========================================
+     ADD / EDIT BIN MODAL
+========================================== -->
+
+<div class="modal-overlay" id="binModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add New Bin
+            </h2>
+
+
+            <button
+                class="close-modal"
+                id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="binForm">
+
+
+            <div class="form-group">
+
+                <label for="binLocation">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="binLocation"
+                    placeholder="Enter bin location"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="binFillLevel">
+                    Fill Level (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="binFillLevel"
+                    min="0"
+                    max="100"
+                    placeholder="0 - 100"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="lastCollection">
+                    Last Collection
+                </label>
+
+                <input
+                    type="text"
+                    id="lastCollection"
+                    placeholder="e.g. 08:30 AM"
+                    required>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    Save Bin
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script>
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const addBinBtn =
+    document.getElementById("addBinBtn");
+
+const binModal =
+    document.getElementById("binModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const cancelModal =
+    document.getElementById("cancelModal");
+
+const binForm =
+    document.getElementById("binForm");
+
+const binTableBody =
+    document.getElementById("binTableBody");
+
+const binSearch =
+    document.getElementById("binSearch");
+
+const filterBtn =
+    document.getElementById("filterBtn");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const binLocation =
+    document.getElementById("binLocation");
+
+const binFillLevel =
+    document.getElementById("binFillLevel");
+
+const lastCollection =
+    document.getElementById("lastCollection");
+
+
+let editingRow = null;
+
+let currentFilter = "all";
+
+let currentPage = 1;
+
+const rowsPerPage = 4;
+
+
+
+/* ==========================================
+   OPEN ADD BIN
+========================================== */
+
+addBinBtn.addEventListener(
+    "click",
+    function () {
+
+        editingRow = null;
+
+        modalTitle.textContent =
+            "Add New Bin";
+
+        binForm.reset();
+
+        binModal.classList.add("show");
+
+    }
+);
+
+
+
+/* ==========================================
+   CLOSE MODAL
+========================================== */
+
+function closeBinModal() {
+
+    binModal.classList.remove("show");
+
+    editingRow = null;
+
+    binForm.reset();
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    closeBinModal
+);
+
+
+cancelModal.addEventListener(
+    "click",
+    closeBinModal
+);
+
+
+
+/* ==========================================
+   CLICK OUTSIDE MODAL
+========================================== */
+
+binModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === binModal) {
+
+            closeBinModal();
+
+        }
+
+    }
+);
+
+
+
+/* ==========================================
+   GET BIN STATUS
+========================================== */
+
+function getBinStatus(fillLevel) {
+
+    if (fillLevel >= 80) {
+
+        return {
+            text: "Full",
+            className: "full"
+        };
+
+    }
+
+
+    if (fillLevel >= 30) {
+
+        return {
+            text: "Normal",
+            className: "normal"
+        };
+
+    }
+
+
+    return {
+        text: "Empty",
+        className: "empty"
+    };
+
+}
+
+
+
+/* ==========================================
+   GET NEXT BIN ID
+========================================== */
+
+function getNextBinId() {
+
+    const rows =
+        binTableBody.querySelectorAll("tr");
+
+    let highestNumber = 0;
+
+
+    rows.forEach(function (row) {
+
+        const id =
+            row.cells[0].textContent.trim();
+
+        const number =
+            parseInt(
+                id.replace("BIN", "")
+            );
+
+
+        if (!isNaN(number) &&
+            number > highestNumber) {
+
+            highestNumber = number;
+
+        }
+
+    });
+
+
+    return "BIN" +
+        String(highestNumber + 1)
+            .padStart(3, "0");
+
+}
+
+
+
+/* ==========================================
+   ADD / EDIT BIN
+========================================== */
+
+binForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const location =
+            binLocation.value.trim();
+
+        const fillLevel =
+            parseInt(binFillLevel.value);
+
+        const collection =
+            lastCollection.value.trim();
+
+
+        if (
+            !location ||
+            isNaN(fillLevel) ||
+            fillLevel < 0 ||
+            fillLevel > 100 ||
+            !collection
+        ) {
+
+            alert(
+                "Please enter valid bin information."
+            );
+
+            return;
+
+        }
+
+
+        const status =
+            getBinStatus(fillLevel);
+
+
+
+        /* ======================================
+           EDIT EXISTING BIN
+        ====================================== */
+
+        if (editingRow) {
+
+
+            editingRow.cells[1].textContent =
+                location;
+
+
+            editingRow.cells[2].textContent =
+                fillLevel + "%";
+
+
+            const statusBadge =
+                editingRow.cells[3]
+                    .querySelector(".status");
+
+
+            statusBadge.textContent =
+                status.text;
+
+
+            statusBadge.className =
+                "status " +
+                status.className;
+
+
+            editingRow.cells[4].textContent =
+                collection;
+
+
+            alert(
+                "Bin updated successfully!"
+            );
+
+
+            closeBinModal();
+
+
+            applyFilters();
+
+
+            return;
+
+        }
+
+
+
+        /* ======================================
+           ADD NEW BIN
+        ====================================== */
+
+        const binId =
+            getNextBinId();
+
+
+        const newRow =
+            document.createElement("tr");
+
+
+        newRow.innerHTML = `
+
+            <td>${binId}</td>
+
+            <td>${location}</td>
+
+            <td>${fillLevel}%</td>
+
+            <td>
+
+                <span class="status ${status.className}">
+
+                    ${status.text}
+
+                </span>
+
+            </td>
+
+            <td>${collection}</td>
+
+            <td>
+
+                <button
+                    class="edit-btn"
+                    title="Edit Bin">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    title="Delete Bin">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        binTableBody.appendChild(newRow);
+
+
+        setupRowButtons(newRow);
+
+
+        alert(
+            "Bin added successfully!"
+        );
+
+
+        closeBinModal();
+
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   EDIT + DELETE
+========================================== */
+
+function setupRowButtons(row) {
+
+
+    /* ======================================
+       EDIT
+    ====================================== */
+
+    const editButton =
+        row.querySelector(".edit-btn");
+
+
+    editButton.addEventListener(
+        "click",
+        function () {
+
+            editingRow = row;
+
+
+            modalTitle.textContent =
+                "Edit Bin";
+
+
+            binLocation.value =
+                row.cells[1]
+                    .textContent
+                    .trim();
+
+
+            binFillLevel.value =
+                parseInt(
+                    row.cells[2]
+                        .textContent
+                );
+
+
+            lastCollection.value =
+                row.cells[4]
+                    .textContent
+                    .trim();
+
+
+            binModal.classList.add("show");
+
+        }
+    );
+
+
+
+    /* ======================================
+       DELETE
+    ====================================== */
+
+    const deleteButton =
+        row.querySelector(".delete-btn");
+
+
+    deleteButton.addEventListener(
+        "click",
+        function () {
+
+
+            const binId =
+                row.cells[0]
+                    .textContent
+                    .trim();
+
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete " +
+                    binId +
+                    "?"
+                );
+
+
+            if (confirmed) {
+
+                row.remove();
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   INITIALIZE EXISTING ROWS
+========================================== */
+
+document
+    .querySelectorAll("#binTableBody tr")
+    .forEach(
+        function (row) {
+
+            setupRowButtons(row);
+
+        }
+    );
+
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+binSearch.addEventListener(
+    "input",
+    function () {
+
+        currentPage = 1;
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   FILTER
+========================================== */
+
+filterBtn.addEventListener(
+    "click",
+    function () {
+
+
+        if (currentFilter === "all") {
+
+            currentFilter = "full";
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Full';
+
+        }
+
+        else if (currentFilter === "full") {
+
+            currentFilter = "normal";
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Normal';
+
+        }
+
+        else if (currentFilter === "normal") {
+
+            currentFilter = "empty";
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Empty';
+
+        }
+
+        else {
+
+            currentFilter = "all";
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Filter';
+
+        }
+
+
+        currentPage = 1;
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   FILTER + SEARCH
+========================================== */
+
+function getFilteredRows() {
+
+    const rows =
+        Array.from(
+            binTableBody.querySelectorAll("tr")
+        );
+
+
+    const searchText =
+        binSearch.value
+            .toLowerCase()
+            .trim();
+
+
+    return rows.filter(
+        function (row) {
+
+
+            const rowText =
+                row.textContent
+                    .toLowerCase();
+
+
+            const status =
+                row.cells[3]
+                    .textContent
+                    .trim()
+                    .toLowerCase();
+
+
+            const matchesSearch =
+                rowText.includes(searchText);
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                status === currentFilter;
+
+
+            return (
+                matchesSearch &&
+                matchesFilter
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   APPLY FILTERS + PAGINATION
+========================================== */
+
+function applyFilters() {
+
+
+    const rows =
+        Array.from(
+            binTableBody.querySelectorAll("tr")
+        );
+
+
+    const filteredRows =
+        getFilteredRows();
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredRows.length /
+                rowsPerPage
+            )
+        );
+
+
+    if (currentPage > totalPages) {
+
+        currentPage = totalPages;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        rowsPerPage;
+
+
+    const end =
+        start +
+        rowsPerPage;
+
+
+    rows.forEach(
+        function (row) {
+
+            row.style.display = "none";
+
+        }
+    );
+
+
+    filteredRows.forEach(
+        function (row, index) {
+
+            if (
+                index >= start &&
+                index < end
+            ) {
+
+                row.style.display = "";
+
+            }
+
+        }
+    );
+
+
+    updatePagination(
+        filteredRows.length,
+        totalPages
+    );
+
+}
+
+
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+function updatePagination(
+    totalRows,
+    totalPages
+) {
+
+
+    const pageButtons =
+        document.querySelectorAll(
+            ".page-btn"
+        );
+
+
+    pageButtons.forEach(
+        function (button, index) {
+
+            const pageNumber =
+                index + 1;
+
+
+            if (
+                pageNumber <= totalPages
+            ) {
+
+                button.style.display =
+                    "inline-block";
+
+                button.textContent =
+                    pageNumber;
+
+
+                if (
+                    pageNumber ===
+                    currentPage
+                ) {
+
+                    button.classList.add(
+                        "active-page"
+                    );
+
+                }
+                else {
+
+                    button.classList.remove(
+                        "active-page"
+                    );
+
+                }
+
+            }
+            else {
+
+                button.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    const prevPage =
+        document.getElementById(
+            "prevPage"
+        );
+
+
+    const nextPage =
+        document.getElementById(
+            "nextPage"
+        );
+
+
+    prevPage.disabled =
+        currentPage === 1;
+
+
+    nextPage.disabled =
+        currentPage === totalPages;
+
+
+    const start =
+        totalRows === 0
+            ? 0
+            : ((currentPage - 1) *
+                rowsPerPage) + 1;
+
+
+    const end =
+        Math.min(
+            currentPage * rowsPerPage,
+            totalRows
+        );
+
+
+    document.getElementById(
+        "binCount"
+    ).textContent =
+        "Showing " +
+        start +
+        "–" +
+        end +
+        " of " +
+        totalRows +
+        " bins";
+
+}
+
+
+
+/* ==========================================
+   PAGE BUTTONS
+========================================== */
+
+document
+    .querySelectorAll(".page-btn")
+    .forEach(
+        function (button, index) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    currentPage =
+                        index + 1;
+
+                    applyFilters();
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* ==========================================
+   PREVIOUS
+========================================== */
+
+document
+    .getElementById("prevPage")
+    .addEventListener(
+        "click",
+        function () {
+
+            if (currentPage > 1) {
+
+                currentPage--;
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+
+
+/* ==========================================
+   NEXT
+========================================== */
+
+document
+    .getElementById("nextPage")
+    .addEventListener(
+        "click",
+        function () {
+
+            const filteredRows =
+                getFilteredRows();
+
+
+            const totalPages =
+                Math.ceil(
+                    filteredRows.length /
+                    rowsPerPage
+                );
+
+
+            if (
+                currentPage <
+                totalPages
+            ) {
+
+                currentPage++;
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+
+
+/* ==========================================
+   INITIAL LOAD
+========================================== */
+
+applyFilters();
+
+</script>
+
+
+</body>
+
+</html>

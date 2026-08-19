@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/customer.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="customer-container">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="customer-sidebar">
+
+        <div class="customer-logo">
+
+            <i class="fa-solid fa-recycle"></i>
+
+            <h2>Smart Waste</h2>
+
+        </div>
+
+        <nav>
+
+            <a href="/customer" class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="#my-bin">
+                <i class="fa-solid fa-trash"></i>
+                My Bin
+            </a>
+
+            <a href="#schedule">
+                <i class="fa-solid fa-calendar-days"></i>
+                Collection Schedule
+            </a>
+
+            <a href="#notifications">
+                <i class="fa-solid fa-bell"></i>
+                Notifications
+            </a>
+
+            <a href="#report">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Report an Issue
+            </a>
+
+            <a href="#profile">
+                <i class="fa-solid fa-user"></i>
+                My Profile
+            </a>
+
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="customer-main">
+
+
+        <!-- HEADER -->
+
+        <header class="customer-topbar">
+
+            <div>
+
+                <h1>Customer Dashboard</h1>
+
+                <p>Welcome back, Resident.</p>
+
+                <small>Wednesday, 5 August 2026</small>
+
+            </div>
+
+
+            <div class="customer-profile">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span>Resident</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <section class="customer-cards">
+
+            <!-- MY BIN -->
+
+            <div class="customer-card green"
+                 onclick="goToSection('my-bin')">
+
+                <i class="fa-solid fa-trash"></i>
+
+                <h2>BIN025</h2>
+
+                <p>My Bin</p>
+
+                <small>Belconnen</small>
+
+            </div>
+
+
+            <!-- FILL LEVEL -->
+
+            <div class="customer-card orange"
+                 onclick="goToSection('my-bin')">
+
+                <i class="fa-solid fa-chart-simple"></i>
+
+                <h2>62%</h2>
+
+                <p>Fill Level</p>
+
+                <small>Normal</small>
+
+            </div>
+
+
+            <!-- NEXT COLLECTION -->
+
+            <div class="customer-card blue"
+                 onclick="goToSection('schedule')">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h2>Tomorrow</h2>
+
+                <p>Next Collection</p>
+
+                <small>8:00 AM – 12:00 PM</small>
+
+            </div>
+
+
+            <!-- COLLECTION HISTORY -->
+
+            <div class="customer-card purple"
+                 onclick="goToSection('history')">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <h2>12</h2>
+
+                <p>Collections</p>
+
+                <small>This year</small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     MY BIN
+========================== -->
+
+<section class="customer-section" id="my-bin">
+
+    <div class="section-title">
+        <h2>
+            <i class="fa-solid fa-trash"></i>
+            My Bin
+        </h2>
+    </div>
+
+    <div class="bin-details">
+
+        <div>
+            <strong>Bin ID</strong>
+            <span>BIN025</span>
+        </div>
+
+        <div>
+            <strong>Location</strong>
+            <span>Belconnen</span>
+        </div>
+
+        <div>
+            <strong>Fill Level</strong>
+            <span>62%</span>
+        </div>
+
+        <div>
+            <strong>Status</strong>
+            <span class="normal-status">
+                Normal
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Fill Level -->
+
+    <div class="fill-level-container">
+
+        <div class="fill-level-header">
+            <strong>Current Fill Level</strong>
+            <span>62%</span>
+        </div>
+
+        <div class="fill-level-bar">
+            <div
+                class="fill-level-progress"
+                style="width: 62%;">
+            </div>
+        </div>
+
+        <p class="fill-level-message">
+            Your bin is currently at a normal level.
+        </p>
+
+    </div>
+
+</section>
+
+        <!-- =========================
+     COLLECTION SCHEDULE
+========================== -->
+
+<section class="customer-section" id="schedule">
+
+    <div class="section-title">
+        <h2>
+            <i class="fa-solid fa-calendar-days"></i>
+            Collection Schedule
+        </h2>
+    </div>
+
+    <!-- Next Collection -->
+
+    <div class="schedule-card">
+
+        <div class="schedule-info">
+
+            <h3>Next Collection</h3>
+
+            <p>Thursday, 6 August 2026</p>
+
+            <small>8:00 AM – 12:00 PM</small>
+
+        </div>
+
+        <div class="schedule-details">
+
+            <p>
+                <strong>Area:</strong>
+                Belconnen
+            </p>
+
+            <p>
+                <strong>Truck:</strong>
+                TRK002
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span class="scheduled-status">
+                    Scheduled
+                </span>
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-truck"></i>
+
+    </div>
+
+</section>
+
+
+        <!-- =========================
+             RECENT COLLECTIONS
+        ========================== -->
+
+        <section class="customer-section" id="history">
+
+            <div class="section-title">
+
+                <h2>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Recent Collections
+                </h2>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Bin</th>
+
+                        <th>Status</th>
+
+                        <th>Collection Time</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>30 July 2026</td>
+
+                        <td>BIN025</td>
+
+                        <td>
+
+                            <span class="completed-status">
+                                Completed
+                            </span>
+
+                        </td>
+
+                        <td>9:15 AM</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>23 July 2026</td>
+
+                        <td>BIN025</td>
+
+                        <td>
+
+                            <span class="completed-status">
+                                Completed
+                            </span>
+
+                        </td>
+
+                        <td>9:05 AM</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>16 July 2026</td>
+
+                        <td>BIN025</td>
+
+                        <td>
+
+                            <span class="completed-status">
+                                Completed
+                            </span>
+
+                        </td>
+
+                        <td>8:50 AM</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- =========================
+     NOTIFICATIONS
+========================== -->
+
+<section class="customer-section" id="notifications">
+
+    <div class="section-title">
+        <h2>
+            <i class="fa-solid fa-bell"></i>
+            Notifications
+        </h2>
+    </div>
+
+    <div class="notification-list">
+
+        <!-- Collection Reminder -->
+
+        <div class="notification-item" onclick="markNotificationRead(this)">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <div>
+                <strong>Collection Reminder</strong>
+
+                <p>
+                    Your next waste collection is tomorrow
+                    between 8:00 AM and 12:00 PM.
+                </p>
+
+                <small>
+                    Today
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- Collection Completed -->
+
+        <div class="notification-item" onclick="markNotificationRead(this)">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+                <strong>Previous Collection Completed</strong>
+
+                <p>
+                    Your bin was successfully collected
+                    on 30 July 2026.
+                </p>
+
+                <small>
+                    19 days ago
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- Bin Status -->
+
+        <div class="notification-item warning-notification" onclick="markNotificationRead(this)">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <div>
+                <strong>Bin Fill Level Update</strong>
+
+                <p>
+                    Your bin is currently 62% full.
+                    Please monitor the fill level before your
+                    next collection.
+                </p>
+
+                <small>
+                    Today
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- System Update -->
+
+        <div class="notification-item" onclick="markNotificationRead(this)">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <div>
+                <strong>System Update</strong>
+
+                <p>
+                    Smart Waste Management services are
+                    operating normally in your area.
+                </p>
+
+                <small>
+                    2 days ago
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     REPORT AN ISSUE
+========================== -->
+
+<section class="customer-section" id="report">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Report an Issue
+        </h2>
+
+    </div>
+
+
+    <div class="issue-buttons">
+
+        <button onclick="openIssueForm('Missed Collection')">
+
+            <i class="fa-solid fa-truck"></i>
+
+            Missed Collection
+
+        </button>
+
+
+        <button onclick="openIssueForm('Damaged Bin')">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Damaged Bin
+
+        </button>
+
+
+        <button onclick="openIssueForm('Overflowing Bin')">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            Overflowing Bin
+
+        </button>
+
+    </div>
+
+
+    <!-- ISSUE FORM -->
+
+    <div id="issueForm" class="issue-form">
+
+        <h3 id="issueTitle">
+            Report an Issue
+        </h3>
+
+
+        <label for="issueDescription">
+            Description
+        </label>
+
+
+        <textarea
+            id="issueDescription"
+            placeholder="Describe the issue..."
+            rows="4"></textarea>
+
+
+        <div class="issue-form-buttons">
+
+            <button
+                class="cancel-issue"
+                onclick="closeIssueForm()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="submit-issue"
+                onclick="submitIssue()">
+
+                Submit Report
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONFIRMATION -->
+
+    <div id="issueConfirmation"
+         class="issue-confirmation">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <div>
+
+            <strong>
+                Issue Submitted
+            </strong>
+
+            <p>
+                Your issue has been successfully reported.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =========================
+     MY PROFILE
+========================== -->
+
+<section class="customer-section" id="profile">
+
+    <div class="section-title">
+        <h2>
+            <i class="fa-solid fa-user"></i>
+            My Profile
+        </h2>
+    </div>
+
+    <div class="profile-details">
+
+        <div class="profile-row">
+            <strong>Name</strong>
+            <span>Resident</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Email</strong>
+            <span>resident@gmail.com</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Collection Area</strong>
+            <span>Belconnen</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Bin ID</strong>
+            <span>BIN025</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Account Type</strong>
+            <span class="customer-account-status">
+                Resident / Customer
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     CUSTOMER JAVASCRIPT
+========================== -->
+
+<script>
+
+    // Scroll to a dashboard section
+
+    function goToSection(sectionId) {
+
+        const section =
+            document.getElementById(sectionId);
+
+        if (section) {
+
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    }
+
+
+    // Store the selected issue
+
+    let selectedIssue = "";
+
+
+    // Open issue form
+
+    function openIssueForm(issue) {
+
+        selectedIssue = issue;
+
+        document.getElementById("issueTitle").textContent =
+            "Report: " + issue;
+
+        document.getElementById("issueDescription").value = "";
+
+        document.getElementById("issueConfirmation")
+            .classList.remove("show");
+
+        document.getElementById("issueForm")
+            .classList.add("show");
+
+    }
+
+
+    // Close issue form
+
+    function closeIssueForm() {
+
+        document.getElementById("issueForm")
+            .classList.remove("show");
+
+    }
+
+
+    // Submit issue
+
+    function submitIssue() {
+
+        const description =
+            document.getElementById("issueDescription")
+            .value
+            .trim();
+
+
+        if (description === "") {
+
+            alert(
+                "Please describe the issue before submitting."
+            );
+
+            return;
+
+        }
+
+
+        // Close form
+
+        document.getElementById("issueForm")
+            .classList.remove("show");
+
+
+        // Show confirmation
+
+        document.getElementById("issueConfirmation")
+            .classList.add("show");
+
+
+        // Display submitted information in console
+
+        console.log("Issue submitted:");
+        console.log("Issue:", selectedIssue);
+        console.log("Bin:", "BIN025");
+        console.log("Location:", "Belconnen");
+        console.log("Description:", description);
+
+    }
+
+</script>
+
+
+
+<script>
+
+    function goToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+
+        if (section) {
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
+
+    let selectedIssue = "";
+
+    function openIssueForm(issue) {
+        selectedIssue = issue;
+
+        document.getElementById("issueTitle").textContent =
+            "Report: " + issue;
+
+        document.getElementById("issueDescription").value = "";
+
+        document.getElementById("issueConfirmation")
+            .classList.remove("show");
+
+        document.getElementById("issueForm")
+            .classList.add("show");
+
+        document.getElementById("issueForm")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+    }
+
+    function closeIssueForm() {
+        document.getElementById("issueForm")
+            .classList.remove("show");
+    }
+
+    function submitIssue() {
+        const description =
+            document.getElementById("issueDescription")
+            .value
+            .trim();
+
+        if (description === "") {
+            alert("Please describe the issue before submitting.");
+            return;
+        }
+
+        document.getElementById("issueForm")
+            .classList.remove("show");
+
+        document.getElementById("issueConfirmation")
+            .classList.add("show");
+
+        console.log("Issue submitted:");
+        console.log("Type:", selectedIssue);
+        console.log("Bin:", "BIN025");
+        console.log("Location:", "Belconnen");
+        console.log("Description:", description);
+    }
+
+    function markNotificationRead(notification) {
+        notification.classList.add("read");
+    }
+
+    function openProfileEdit() {
+        const form = document.getElementById("profileEditForm");
+
+        if (form) {
+            form.classList.add("show");
+        }
+    }
+
+    function closeProfileEdit() {
+        const form = document.getElementById("profileEditForm");
+
+        if (form) {
+            form.classList.remove("show");
+        }
+    }
+
+    function saveProfile() {
+        const name =
+            document.getElementById("profileName").value.trim();
+
+        const email =
+            document.getElementById("profileEmail").value.trim();
+
+        if (name === "" || email === "") {
+            alert("Please enter both your name and email.");
+            return;
+        }
+
+        alert("Profile updated successfully.");
+        closeProfileEdit();
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/reports.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-recycle"></i>
+            <h2>Smart Waste</h2>
+        </div>
+
+        <nav>
+
+            <a href="/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="/binmanagement">
+                <i class="fa-solid fa-trash"></i>
+                Bin Management
+            </a>
+
+            <a href="/collection">
+                <i class="fa-solid fa-truck"></i>
+                Collection Trucks
+            </a>
+
+            <a href="/routes">
+                <i class="fa-solid fa-route"></i>
+                Routes
+            </a>
+
+            <a href="/reports" class="active">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </a>
+
+            <a href="/users">
+                <i class="fa-solid fa-users"></i>
+                Users
+            </a>
+
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>Reports</h1>
+
+                <p>
+                    View waste collection and smart bin performance reports across Canberra.
+                </p>
+
+                <small>
+                    Wednesday, 5 August 2026
+                </small>
+
+            </div>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- REPORT CONTROLS -->
+        <section class="report-controls">
+
+            <div class="date-filter">
+
+                <label for="reportDate">
+                    <i class="fa-solid fa-calendar"></i>
+                    Report Period
+                </label>
+
+                <select id="reportDate">
+
+                    <option value="today">Today</option>
+
+                    <option value="week">This Week</option>
+
+                    <option value="month" selected>This Month</option>
+
+                    <option value="lastMonth">Last Month</option>
+
+                </select>
+
+            </div>
+
+
+            <button class="generate-btn" id="generateReportBtn">
+
+                <i class="fa-solid fa-file-arrow-down"></i>
+
+                Generate Report
+
+            </button>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+        <section class="report-cards">
+
+            <div class="report-card green">
+
+                <i class="fa-solid fa-trash"></i>
+
+                <h2 id="totalBins">120</h2>
+
+                <p>Total Bins</p>
+
+                <small>Across Canberra</small>
+
+            </div>
+
+
+            <div class="report-card red">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <h2 id="fullBins">18</h2>
+
+                <p>Full Bins</p>
+
+                <small>Require collection</small>
+
+            </div>
+
+
+            <div class="report-card blue">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <h2 id="collections">46</h2>
+
+                <p>Collections</p>
+
+                <small id="collectionDescription">Completed today</small>
+
+            </div>
+
+
+            <div class="report-card orange">
+
+                <i class="fa-solid fa-route"></i>
+
+                <h2 id="routes">20</h2>
+
+                <p>Routes</p>
+
+                <small>Active collection routes</small>
+
+            </div>
+
+        </section>
+
+
+        <!-- COLLECTION REPORT -->
+        <section class="report-section">
+
+            <div class="section-header">
+
+                <h2>
+                    <i class="fa-solid fa-chart-line"></i>
+                    Collection Performance
+                </h2>
+
+                <button class="export-btn" id="exportBtn">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Export
+
+                </button>
+
+            </div>
+
+
+            <div class="performance-grid">
+
+
+                <!-- COMPLETED -->
+                <div class="performance-item">
+
+                    <div class="performance-title">
+
+                        <span>Completed Collections</span>
+
+                        <strong id="completedCollections">46</strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress green-progress"
+                            id="completedProgress"
+                            style="width: 85%;">
+                        </div>
+
+                    </div>
+
+                    <small id="completedDescription">
+                        85% of scheduled collections
+                    </small>
+
+                </div>
+
+
+                <!-- PENDING -->
+                <div class="performance-item">
+
+                    <div class="performance-title">
+
+                        <span>Pending Collections</span>
+
+                        <strong id="pendingCollections">8</strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress orange-progress"
+                            id="pendingProgress"
+                            style="width: 25%;">
+                        </div>
+
+                    </div>
+
+                    <small>
+                        Collections still pending
+                    </small>
+
+                </div>
+
+
+                <!-- FULL BIN RATE -->
+                <div class="performance-item">
+
+                    <div class="performance-title">
+
+                        <span>Full Bin Rate</span>
+
+                        <strong id="fullBinRate">15%</strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress red-progress"
+                            id="fullBinProgress"
+                            style="width: 15%;">
+                        </div>
+
+                    </div>
+
+                    <small id="fullBinDescription">
+                        18 of 120 bins are full
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BIN STATUS REPORT -->
+        <section class="report-section">
+
+            <div class="section-header">
+
+                <h2>
+                    <i class="fa-solid fa-trash-can"></i>
+                    Bin Status Summary
+                </h2>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Status</th>
+
+                        <th>Number of Bins</th>
+
+                        <th>Percentage</th>
+
+                        <th>Condition</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+
+                            <span class="status full-status">
+                                Full
+                            </span>
+
+                        </td>
+
+                        <td id="fullBinTable">18</td>
+
+                        <td id="fullPercentage">15%</td>
+
+                        <td>
+                            Requires collection
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <span class="status normal-status">
+                                Normal
+                            </span>
+
+                        </td>
+
+                        <td id="normalBins">82</td>
+
+                        <td id="normalPercentage">68%</td>
+
+                        <td>
+                            Operating normally
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <span class="status empty-status">
+                                Empty
+                            </span>
+
+                        </td>
+
+                        <td id="emptyBins">20</td>
+
+                        <td id="emptyPercentage">17%</td>
+
+                        <td>
+                            Recently collected
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ==========================================
+     REPORT FUNCTIONALITY
+========================================== -->
+
+<script>
+
+    /*
+    =====================================================
+    REPORT DATA
+
+    These values are demonstration data because the
+    current HTML page is not connected to a database.
+
+    Your original "This Month" values are preserved.
+    =====================================================
+    */
+
+    const reportData = {
+
+        today: {
+            totalBins: 120,
+            fullBins: 18,
+            collections: 46,
+            routes: 20,
+            completed: 46,
+            pending: 8,
+            completionRate: 85
+        },
+
+        week: {
+            totalBins: 120,
+            fullBins: 16,
+            collections: 214,
+            routes: 20,
+            completed: 214,
+            pending: 26,
+            completionRate: 89
+        },
+
+        month: {
+            totalBins: 120,
+            fullBins: 18,
+            collections: 46,
+            routes: 20,
+            completed: 46,
+            pending: 8,
+            completionRate: 85
+        },
+
+        lastMonth: {
+            totalBins: 120,
+            fullBins: 22,
+            collections: 185,
+            routes: 18,
+            completed: 185,
+            pending: 31,
+            completionRate: 86
+        }
+
+    };
+
+
+    /*
+    =====================================================
+    GET HTML ELEMENTS
+    =====================================================
+    */
+
+    const reportDate = document.getElementById("reportDate");
+
+    const totalBins = document.getElementById("totalBins");
+
+    const fullBins = document.getElementById("fullBins");
+
+    const collections = document.getElementById("collections");
+
+    const routes = document.getElementById("routes");
+
+    const completedCollections =
+        document.getElementById("completedCollections");
+
+    const pendingCollections =
+        document.getElementById("pendingCollections");
+
+    const fullBinRate =
+        document.getElementById("fullBinRate");
+
+    const completedProgress =
+        document.getElementById("completedProgress");
+
+    const pendingProgress =
+        document.getElementById("pendingProgress");
+
+    const fullBinProgress =
+        document.getElementById("fullBinProgress");
+
+    const completedDescription =
+        document.getElementById("completedDescription");
+
+    const fullBinDescription =
+        document.getElementById("fullBinDescription");
+
+    const fullBinTable =
+        document.getElementById("fullBinTable");
+
+    const fullPercentage =
+        document.getElementById("fullPercentage");
+
+    const normalBins =
+        document.getElementById("normalBins");
+
+    const normalPercentage =
+        document.getElementById("normalPercentage");
+
+    const emptyBins =
+        document.getElementById("emptyBins");
+
+    const emptyPercentage =
+        document.getElementById("emptyPercentage");
+
+
+    /*
+    =====================================================
+    UPDATE REPORT
+    =====================================================
+    */
+
+    function updateReport() {
+
+        const selectedPeriod = reportDate.value;
+
+        const data = reportData[selectedPeriod];
+
+        if (!data) {
+            return;
+        }
+
+
+        /*
+        SUMMARY CARDS
+        */
+
+        totalBins.textContent = data.totalBins;
+
+        fullBins.textContent = data.fullBins;
+
+        collections.textContent = data.collections;
+
+        routes.textContent = data.routes;
+
+
+        /*
+        COLLECTION PERFORMANCE
+        */
+
+        completedCollections.textContent = data.completed;
+
+        pendingCollections.textContent = data.pending;
+
+        completedProgress.style.width =
+            data.completionRate + "%";
+
+
+        completedDescription.textContent =
+            data.completionRate +
+            "% of scheduled collections";
+
+
+        /*
+        FULL BIN RATE
+        */
+
+        const fullRate =
+            Math.round(
+                (data.fullBins / data.totalBins) * 100
+            );
+
+
+        fullBinRate.textContent =
+            fullRate + "%";
+
+
+        fullBinProgress.style.width =
+            fullRate + "%";
+
+
+        fullBinDescription.textContent =
+            data.fullBins +
+            " of " +
+            data.totalBins +
+            " bins are full";
+
+
+        /*
+        BIN STATUS TABLE
+        */
+
+        fullBinTable.textContent =
+            data.fullBins;
+
+
+        fullPercentage.textContent =
+            fullRate + "%";
+
+
+        /*
+        Calculate normal and empty bins
+        */
+
+        const empty = 20;
+
+        const normal =
+            data.totalBins -
+            data.fullBins -
+            empty;
+
+
+        const normalRate =
+            Math.round(
+                (normal / data.totalBins) * 100
+            );
+
+
+        const emptyRate =
+            Math.round(
+                (empty / data.totalBins) * 100
+            );
+
+
+        normalBins.textContent =
+            normal;
+
+
+        normalPercentage.textContent =
+            normalRate + "%";
+
+
+        emptyBins.textContent =
+            empty;
+
+
+        emptyPercentage.textContent =
+            emptyRate + "%";
+
+    }
+
+
+    /*
+    =====================================================
+    REPORT PERIOD CHANGE
+    =====================================================
+    */
+
+    reportDate.addEventListener(
+        "change",
+        updateReport
+    );
+
+
+    /*
+    =====================================================
+    GENERATE REPORT
+    =====================================================
+    */
+
+    document
+        .getElementById("generateReportBtn")
+        .addEventListener("click", function () {
+
+
+            const period =
+                reportDate.options[
+                    reportDate.selectedIndex
+                ].text;
+
+
+            const data =
+                reportData[reportDate.value];
+
+
+            const fullRate =
+                Math.round(
+                    (data.fullBins / data.totalBins) * 100
+                );
+
+
+            const empty = 20;
+
+
+            const normal =
+                data.totalBins -
+                data.fullBins -
+                empty;
+
+
+            const normalRate =
+                Math.round(
+                    (normal / data.totalBins) * 100
+                );
+
+
+            const emptyRate =
+                Math.round(
+                    (empty / data.totalBins) * 100
+                );
+
+
+            /*
+            Create a complete HTML report
+            */
+
+            const reportHTML = `
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Smart Waste Report - ${period}</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    color: #222;
+}
+
+h1 {
+    color: #2e7d32;
+}
+
+h2 {
+    color: #2e7d32;
+    margin-top: 30px;
+}
+
+.info {
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.card h3 {
+    font-size: 28px;
+    margin: 5px 0;
+    color: #2e7d32;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #2e7d32;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 40px;
+    color: #777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Smart Waste Management System</h1>
+
+<h2>Waste Management Report</h2>
+
+<div class="info">
+
+<strong>Report Period:</strong> ${period}<br>
+
+<strong>Generated By:</strong> Administrator<br>
+
+<strong>Generated Date:</strong> 5 August 2026
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<p>Total Bins</p>
+
+<h3>${data.totalBins}</h3>
+
+</div>
+
+
+<div class="card">
+
+<p>Full Bins</p>
+
+<h3>${data.fullBins}</h3>
+
+</div>
+
+
+<div class="card">
+
+<p>Collections</p>
+
+<h3>${data.collections}</h3>
+
+</div>
+
+
+<div class="card">
+
+<p>Routes</p>
+
+<h3>${data.routes}</h3>
+
+</div>
+
+</div>
+
+
+<h2>Collection Performance</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Completed Collections</td>
+
+<td>${data.completed}</td>
+
+</tr>
+
+<tr>
+
+<td>Pending Collections</td>
+
+<td>${data.pending}</td>
+
+</tr>
+
+<tr>
+
+<td>Completion Rate</td>
+
+<td>${data.completionRate}%</td>
+
+</tr>
+
+<tr>
+
+<td>Full Bin Rate</td>
+
+<td>${fullRate}%</td>
+
+</tr>
+
+</table>
+
+
+<h2>Bin Status Summary</h2>
+
+<table>
+
+<tr>
+
+<th>Status</th>
+
+<th>Number of Bins</th>
+
+<th>Percentage</th>
+
+<th>Condition</th>
+
+</tr>
+
+<tr>
+
+<td>Full</td>
+
+<td>${data.fullBins}</td>
+
+<td>${fullRate}%</td>
+
+<td>Requires collection</td>
+
+</tr>
+
+<tr>
+
+<td>Normal</td>
+
+<td>${normal}</td>
+
+<td>${normalRate}%</td>
+
+<td>Operating normally</td>
+
+</tr>
+
+<tr>
+
+<td>Empty</td>
+
+<td>${empty}</td>
+
+<td>${emptyRate}%</td>
+
+<td>Recently collected</td>
+
+</tr>
+
+</table>
+
+
+<div class="footer">
+
+Smart Waste Management System - Canberra
+
+</div>
+
+</body>
+
+</html>
+
+`;
+
+
+            /*
+            Convert report into a downloadable file
+            */
+
+            const blob =
+                new Blob(
+                    [reportHTML],
+                    { type: "text/html" }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href = url;
+
+
+            link.download =
+                "Smart_Waste_Report_" +
+                reportDate.value +
+                ".html";
+
+
+            document.body.appendChild(link);
+
+
+            link.click();
+
+
+            document.body.removeChild(link);
+
+
+            URL.revokeObjectURL(url);
+
+
+            alert(
+                "Report generated successfully!"
+            );
+
+        });
+
+
+    /*
+    =====================================================
+    EXPORT REPORT AS CSV
+    =====================================================
+    */
+
+    document
+        .getElementById("exportBtn")
+        .addEventListener("click", function () {
+
+
+            const period =
+                reportDate.options[
+                    reportDate.selectedIndex
+                ].text;
+
+
+            const data =
+                reportData[reportDate.value];
+
+
+            const fullRate =
+                Math.round(
+                    (data.fullBins / data.totalBins) * 100
+                );
+
+
+            const empty = 20;
+
+
+            const normal =
+                data.totalBins -
+                data.fullBins -
+                empty;
+
+
+            const normalRate =
+                Math.round(
+                    (normal / data.totalBins) * 100
+                );
+
+
+            const emptyRate =
+                Math.round(
+                    (empty / data.totalBins) * 100
+                );
+
+
+            /*
+            CSV CONTENT
+            */
+
+            let csv = "";
+
+
+            csv +=
+                "SMART WASTE MANAGEMENT SYSTEM\n";
+
+
+            csv +=
+                "Report Period," +
+                period +
+                "\n";
+
+
+            csv +=
+                "Generated By,Administrator\n";
+
+
+            csv +=
+                "Generated Date,5 August 2026\n\n";
+
+
+            csv +=
+                "SUMMARY\n";
+
+
+            csv +=
+                "Metric,Value\n";
+
+
+            csv +=
+                "Total Bins," +
+                data.totalBins +
+                "\n";
+
+
+            csv +=
+                "Full Bins," +
+                data.fullBins +
+                "\n";
+
+
+            csv +=
+                "Collections," +
+                data.collections +
+                "\n";
+
+
+            csv +=
+                "Routes," +
+                data.routes +
+                "\n\n";
+
+
+            csv +=
+                "COLLECTION PERFORMANCE\n";
+
+
+            csv +=
+                "Metric,Value\n";
+
+
+            csv +=
+                "Completed Collections," +
+                data.completed +
+                "\n";
+
+
+            csv +=
+                "Pending Collections," +
+                data.pending +
+                "\n";
+
+
+            csv +=
+                "Completion Rate," +
+                data.completionRate +
+                "%\n";
+
+
+            csv +=
+                "Full Bin Rate," +
+                fullRate +
+                "%\n\n";
+
+
+            csv +=
+                "BIN STATUS SUMMARY\n";
+
+
+            csv +=
+                "Status,Number of Bins,Percentage,Condition\n";
+
+
+            csv +=
+                "Full," +
+                data.fullBins +
+                "," +
+                fullRate +
+                "%,Requires collection\n";
+
+
+            csv +=
+                "Normal," +
+                normal +
+                "," +
+                normalRate +
+                "%,Operating normally\n";
+
+
+            csv +=
+                "Empty," +
+                empty +
+                "," +
+                emptyRate +
+                "%,Recently collected\n";
+
+
+            /*
+            Create CSV file
+            */
+
+            const blob =
+                new Blob(
+                    [csv],
+                    { type: "text/csv;charset=utf-8;" }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href = url;
+
+
+            link.download =
+                "Smart_Waste_Report_" +
+                reportDate.value +
+                ".csv";
+
+
+            document.body.appendChild(link);
+
+
+            link.click();
+
+
+            document.body.removeChild(link);
+
+
+            URL.revokeObjectURL(url);
+
+
+            alert(
+                "Report exported successfully!"
+            );
+
+        });
+
+
+    /*
+    =====================================================
+    INITIAL LOAD
+    =====================================================
+    */
+
+    updateReport();
+
+</script>
+
+</body>
+
+</html>

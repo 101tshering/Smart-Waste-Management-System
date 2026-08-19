@@ -1,0 +1,137 @@
+/* ==========================
+   LOGIN PAGE
+========================== */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    linear-gradient(rgba(27,94,32,.75), rgba(27,94,32,.75)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:100vh;
+}
+
+.login-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card{
+
+    width:430px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+    text-align:center;
+}
+
+.login-card h1{
+
+    color:#2e7d32;
+
+    font-size:36px;
+
+    margin-bottom:15px;
+}
+
+.subtitle{
+
+    color:#777;
+
+    margin-bottom:30px;
+
+    font-size:17px;
+}
+
+.form-group{
+
+    text-align:left;
+
+    margin-bottom:20px;
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+    color:#444;
+}
+
+.form-control{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.form-control:focus{
+
+    border-color:#2e7d32;
+
+    box-shadow:0 0 10px rgba(46,125,50,.3);
+}
+
+.btn-login{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#2e7d32;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    margin-top:10px;
+
+    transition:.3s;
+}
+
+.btn-login:hover{
+
+    background:#1b5e20;
+}
+
+.footer-text{
+
+    margin-top:20px;
+
+    color:#777;
+
+    font-size:14px;
+}

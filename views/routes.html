@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Routes | Smart Waste Management System</title>
+
+    <!-- Routes CSS -->
+    <link rel="stylesheet" href="/css/routes.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<!-- =========================
+     ROUTE MODAL
+========================= -->
+
+<div class="modal-overlay" id="routeModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                <i class="fa-solid fa-route"></i>
+                Create New Route
+            </h2>
+
+            <button class="close-modal" id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="routeForm">
+
+            <div class="form-group">
+
+                <label for="routeName">
+                    Route Name
+                </label>
+
+                <input
+                    type="text"
+                    id="routeName"
+                    placeholder="Enter route name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="routeArea">
+                    Area
+                </label>
+
+                <input
+                    type="text"
+                    id="routeArea"
+                    placeholder="Enter area"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="assignedTruck">
+                    Assigned Truck
+                </label>
+
+                <select id="assignedTruck" required>
+
+                    <option value="">Select truck</option>
+                    <option value="TRK001">TRK001</option>
+                    <option value="TRK002">TRK002</option>
+                    <option value="TRK003">TRK003</option>
+                    <option value="TRK004">TRK004</option>
+                    <option value="TRK005">TRK005</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="binCount">
+                    Number of Bins
+                </label>
+
+                <input
+                    type="number"
+                    id="binCount"
+                    min="1"
+                    placeholder="Enter number of bins"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="routeStatus">
+                    Status
+                </label>
+
+                <select id="routeStatus">
+
+                    <option value="Active">Active</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Save Route
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ROUTE JAVASCRIPT
+========================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("routeModal");
+    const modalTitle = document.getElementById("modalTitle");
+
+    const addButton = document.querySelector(".btn-add");
+    const closeButton = document.getElementById("closeModal");
+    const cancelButton = document.getElementById("cancelModal");
+
+    const form = document.getElementById("routeForm");
+
+    const routeName = document.getElementById("routeName");
+    const routeArea = document.getElementById("routeArea");
+    const assignedTruck = document.getElementById("assignedTruck");
+    const binCount = document.getElementById("binCount");
+    const routeStatus = document.getElementById("routeStatus");
+
+    const searchInput =
+        document.querySelector(".search-section input");
+
+    const filterButton =
+        document.querySelector(".search-section button");
+
+    const tableBody =
+        document.querySelector("tbody");
+
+    let editingRow = null;
+
+
+    /* =========================
+       OPEN MODAL
+    ========================= */
+
+    addButton.addEventListener("click", function () {
+
+        editingRow = null;
+
+        modalTitle.innerHTML =
+            '<i class="fa-solid fa-route"></i> Create New Route';
+
+        form.reset();
+
+        modal.classList.add("show");
+
+    });
+
+
+    /* =========================
+       CLOSE MODAL
+    ========================= */
+
+    function closeModal() {
+
+        modal.classList.remove("show");
+
+        editingRow = null;
+
+        form.reset();
+
+    }
+
+    closeButton.addEventListener("click", closeModal);
+
+    cancelButton.addEventListener("click", closeModal);
+
+
+    /* Close when clicking outside */
+
+    modal.addEventListener("click", function (event) {
+
+        if (event.target === modal) {
+            closeModal();
+        }
+
+    });
+
+
+    /* =========================
+       SAVE / UPDATE ROUTE
+    ========================= */
+
+    form.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const name = routeName.value.trim();
+        const area = routeArea.value.trim();
+        const truck = assignedTruck.value;
+        const bins = binCount.value;
+        const status = routeStatus.value;
+
+        if (!name || !area || !truck || !bins) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+
+        /* EDIT EXISTING ROUTE */
+
+        if (editingRow) {
+
+            const cells = editingRow.querySelectorAll("td");
+
+            cells[1].textContent = name;
+            cells[2].textContent = area;
+            cells[3].textContent = truck;
+            cells[4].textContent = bins;
+
+            cells[5].innerHTML =
+                createStatusBadge(status);
+
+            closeModal();
+
+            return;
+        }
+
+
+        /* CREATE NEW ROUTE */
+
+        const currentRows =
+            tableBody.querySelectorAll("tr");
+
+        const routeNumber =
+            currentRows.length + 1;
+
+        const routeID =
+            "RT" + String(routeNumber).padStart(3, "0");
+
+
+        const row =
+            document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>${routeID}</td>
+
+            <td>${name}</td>
+
+            <td>${area}</td>
+
+            <td>${truck}</td>
+
+            <td>${bins}</td>
+
+            <td>
+                ${createStatusBadge(status)}
+            </td>
+
+            <td>
+
+                <button class="edit-btn">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+
+                <button class="delete-btn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </td>
+
+        `;
+
+        tableBody.appendChild(row);
+
+        addRowButtons(row);
+
+        closeModal();
+
+    });
+
+
+    /* =========================
+       STATUS BADGE
+    ========================= */
+
+    function createStatusBadge(status) {
+
+        let className = "active-status";
+
+        if (status === "Pending") {
+            className = "pending-status";
+        }
+
+        if (status === "Completed") {
+            className = "completed-status";
+        }
+
+        return `
+            <span class="status ${className}">
+                ${status}
+            </span>
+        `;
+
+    }
+
+
+    /* =========================
+       EDIT ROUTE
+    ========================= */
+
+    function editRoute(row) {
+
+        editingRow = row;
+
+        const cells = row.querySelectorAll("td");
+
+        routeName.value = cells[1].textContent.trim();
+
+        routeArea.value = cells[2].textContent.trim();
+
+        assignedTruck.value =
+            cells[3].textContent.trim();
+
+        binCount.value =
+            cells[4].textContent.trim();
+
+        routeStatus.value =
+            cells[5].textContent.trim();
+
+
+        modalTitle.innerHTML =
+            '<i class="fa-solid fa-pen"></i> Edit Route';
+
+        modal.classList.add("show");
+
+    }
+
+
+    /* =========================
+       DELETE ROUTE
+    ========================= */
+
+    function deleteRoute(row) {
+
+        const routeID =
+            row.querySelector("td").textContent;
+
+        const routeName =
+            row.querySelectorAll("td")[1].textContent;
+
+
+        const confirmed = confirm(
+            `Are you sure you want to delete ${routeID} - ${routeName}?`
+        );
+
+
+        if (confirmed) {
+
+            row.remove();
+
+        }
+
+    }
+
+
+    /* =========================
+       ADD BUTTONS TO ROW
+    ========================= */
+
+    function addRowButtons(row) {
+
+        const editButton =
+            row.querySelector(".edit-btn");
+
+        const deleteButton =
+            row.querySelector(".delete-btn");
+
+
+        editButton.addEventListener(
+            "click",
+            function () {
+                editRoute(row);
+            }
+        );
+
+
+        deleteButton.addEventListener(
+            "click",
+            function () {
+                deleteRoute(row);
+            }
+        );
+
+    }
+
+
+    /* =========================
+       EXISTING ROW BUTTONS
+    ========================= */
+
+    tableBody
+        .querySelectorAll("tr")
+        .forEach(function (row) {
+
+            addRowButtons(row);
+
+        });
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            tableBody
+                .querySelectorAll("tr")
+                .forEach(function (row) {
+
+                    const text =
+                        row.textContent
+                            .toLowerCase();
+
+
+                    if (text.includes(search)) {
+
+                        row.style.display = "";
+
+                    } else {
+
+                        row.style.display = "none";
+
+                    }
+
+                });
+
+        }
+    );
+
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    filterButton.addEventListener(
+        "click",
+        function () {
+
+            const choice = prompt(
+                "Enter status to filter:\n\n" +
+                "Active\n" +
+                "Pending\n" +
+                "Completed\n\n" +
+                "Type ALL to show all routes."
+            );
+
+
+            if (choice === null) {
+                return;
+            }
+
+
+            const filter =
+                choice.toLowerCase().trim();
+
+
+            tableBody
+                .querySelectorAll("tr")
+                .forEach(function (row) {
+
+                    const status =
+                        row
+                            .querySelector(".status")
+                            ?.textContent
+                            .toLowerCase()
+                            .trim();
+
+
+                    if (
+                        filter === "all" ||
+                        status === filter
+                    ) {
+
+                        row.style.display = "";
+
+                    } else {
+
+                        row.style.display = "none";
+
+                    }
+
+                });
+
+        }
+    );
+
+
+    /* =========================
+       PAGINATION
+    ========================= */
+
+    const paginationButtons =
+        document.querySelectorAll(
+            ".pagination button"
+        );
+
+
+    paginationButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    button.textContent.trim() ===
+                    "Previous"
+                ) {
+
+                    alert("You are already on page 1.");
+
+                }
+
+                else if (
+                    button.textContent.trim() ===
+                    "Next"
+                ) {
+
+                    alert(
+                        "Page 2 will contain the next routes."
+                    );
+
+                }
+
+                else {
+
+                    paginationButtons
+                        .forEach(function (btn) {
+                            btn.classList.remove(
+                                "active-page"
+                            );
+                        });
+
+                    button.classList.add(
+                        "active-page"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+});
+
+</script>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-recycle"></i>
+
+            <h2>Smart Waste</h2>
+
+        </div>
+
+        <nav>
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="/binmanagement">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Bin Management
+
+            </a>
+
+            <a href="/collection">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Collection Trucks
+
+            </a>
+
+            <a href="/routes" class="active">
+
+                <i class="fa-solid fa-route"></i>
+
+                Routes
+
+            </a>
+
+            <a href="/reports">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reports
+
+            </a>
+
+            <a href="/users">
+
+                <i class="fa-solid fa-users"></i>
+
+                Users
+
+            </a>
+
+            <a href="/">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Routes</h1>
+
+                <p>Manage and optimise waste collection routes across Canberra.</p>
+
+                <small>Wednesday, 5 August 2026</small>
+
+            </div>
+
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTROLS
+        ========================== -->
+
+        <section class="controls">
+
+            <button class="btn-add">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Create New Route
+
+            </button>
+
+
+            <div class="search-section">
+
+                <input
+                    type="text"
+                    placeholder="Search Route or Location">
+
+                <button>
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    Filter
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ROUTES TABLE
+        ========================== -->
+
+        <section class="table-section">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Route ID</th>
+
+                        <th>Route Name</th>
+
+                        <th>Area</th>
+
+                        <th>Assigned Truck</th>
+
+                        <th>Bins</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <!-- Route 1 -->
+
+                    <tr>
+
+                        <td>RT001</td>
+
+                        <td>Central Canberra</td>
+
+                        <td>Canberra CBD</td>
+
+                        <td>TRK001</td>
+
+                        <td>24</td>
+
+                        <td>
+
+                            <span class="status active-status">
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="edit-btn">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Route 2 -->
+
+                    <tr>
+
+                        <td>RT002</td>
+
+                        <td>Belconnen Route</td>
+
+                        <td>Belconnen</td>
+
+                        <td>TRK002</td>
+
+                        <td>30</td>
+
+                        <td>
+
+                            <span class="status active-status">
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="edit-btn">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Route 3 -->
+
+                    <tr>
+
+                        <td>RT003</td>
+
+                        <td>Gungahlin Route</td>
+
+                        <td>Gungahlin</td>
+
+                        <td>TRK003</td>
+
+                        <td>28</td>
+
+                        <td>
+
+                            <span class="status active-status">
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="edit-btn">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Route 4 -->
+
+                    <tr>
+
+                        <td>RT004</td>
+
+                        <td>Woden Route</td>
+
+                        <td>Woden</td>
+
+                        <td>TRK004</td>
+
+                        <td>20</td>
+
+                        <td>
+
+                            <span class="status pending-status">
+
+                                Pending
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="edit-btn">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Route 5 -->
+
+                    <tr>
+
+                        <td>RT005</td>
+
+                        <td>Tuggeranong Route</td>
+
+                        <td>Tuggeranong</td>
+
+                        <td>TRK005</td>
+
+                        <td>18</td>
+
+                        <td>
+
+                            <span class="status completed-status">
+
+                                Completed
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="edit-btn">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 PAGINATION
+            ========================== -->
+
+            <div class="bottom-bar">
+
+                <p>
+
+                    Showing <strong>1–5</strong>
+                    of <strong>20</strong> routes
+
+                </p>
+
+
+                <div class="pagination">
+
+                    <button>
+
+                        Previous
+
+                    </button>
+
+                    <button class="active-page">
+
+                        1
+
+                    </button>
+
+                    <button>
+
+                        2
+
+                    </button>
+
+                    <button>
+
+                        3
+
+                    </button>
+
+                    <button>
+
+                        4
+
+                    </button>
+
+                    <button>
+
+                        Next
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

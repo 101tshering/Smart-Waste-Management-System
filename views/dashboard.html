@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-recycle"></i>
+            <h2>Smart Waste</h2>
+        </div>
+
+        <nav>
+
+            <a href="/dashboard" class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="/binmanagement">
+                <i class="fa-solid fa-trash"></i>
+                Bin Management
+            </a>
+
+            <a href="/collection">
+                <i class="fa-solid fa-truck"></i>
+                Collection Trucks
+            </a>
+
+            <a href="/routes">
+                <i class="fa-solid fa-route"></i>
+                Routes
+            </a>
+
+            <a href="/reports">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </a>
+
+            <a href="/users">
+                <i class="fa-solid fa-users"></i>
+                Users
+            </a>
+
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Dashboard Overview</h1>
+
+                <p>Welcome back, Administrator</p>
+
+                <small>Wednesday, 5 August 2026</small>
+
+            </div>
+
+            <div class="profile">
+
+                <!-- Notification Button -->
+                <button
+                    id="notificationBtn"
+                    class="notification-btn"
+                    title="Notifications">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </button>
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             STATISTICS CARDS
+        ========================== -->
+
+        <section class="cards">
+
+            <!-- Total Bins -->
+
+            <div
+                class="card green clickable-card"
+                onclick="goToPage('/binmanagement')">
+
+                <i class="fa-solid fa-trash"></i>
+
+                <h2>120</h2>
+
+                <p>Total Bins</p>
+
+            </div>
+
+
+            <!-- Full Bins -->
+
+            <div
+                class="card red clickable-card"
+                onclick="goToPage('/binmanagement')">
+
+                <i class="fa-solid fa-trash-can"></i>
+
+                <h2>18</h2>
+
+                <p>Full Bins</p>
+
+            </div>
+
+
+            <!-- Collection Trucks -->
+
+            <div
+                class="card blue clickable-card"
+                onclick="goToPage('/collection')">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <h2>8</h2>
+
+                <p>Collection Trucks</p>
+
+            </div>
+
+
+            <!-- Today's Collections -->
+
+            <div
+                class="card orange clickable-card"
+                onclick="goToPage('/reports')">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <h2>46</h2>
+
+                <p>Today's Collections</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <section class="quick-actions">
+
+            <!-- Add Bin -->
+
+            <button
+                class="btn green-btn"
+                onclick="goToPage('/binmanagement')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Bin
+
+            </button>
+
+
+            <!-- Assign Truck -->
+
+            <button
+                class="btn blue-btn"
+                onclick="goToPage('/collection')">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Assign Truck
+
+            </button>
+
+
+            <!-- Generate Report -->
+
+            <button
+                class="btn orange-btn"
+                onclick="goToPage('/reports')">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Generate Report
+
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             RECENT COLLECTION ACTIVITY
+        ========================== -->
+
+        <section class="table-section">
+
+            <div class="table-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Recent Collection Activity
+
+                </h2>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Bin ID</th>
+
+                        <th>Location</th>
+
+                        <th>Status</th>
+
+                        <th>Truck</th>
+
+                        <th>Last Collection</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <!-- ROW 1 -->
+
+                    <tr
+                        class="clickable-row"
+                        onclick="goToPage('/binmanagement')">
+
+                        <td>BIN-001</td>
+
+                        <td>Canberra City</td>
+
+                        <td>
+                            <span class="status full">
+                                Full
+                            </span>
+                        </td>
+
+                        <td>Truck 01</td>
+
+                        <td>08:30 AM</td>
+
+                    </tr>
+
+
+                    <!-- ROW 2 -->
+
+                    <tr
+                        class="clickable-row"
+                        onclick="goToPage('/binmanagement')">
+
+                        <td>BIN-002</td>
+
+                        <td>Belconnen</td>
+
+                        <td>
+                            <span class="status normal">
+                                Normal
+                            </span>
+                        </td>
+
+                        <td>Truck 02</td>
+
+                        <td>09:15 AM</td>
+
+                    </tr>
+
+
+                    <!-- ROW 3 -->
+
+                    <tr
+                        class="clickable-row"
+                        onclick="goToPage('/binmanagement')">
+
+                        <td>BIN-003</td>
+
+                        <td>Woden</td>
+
+                        <td>
+                            <span class="status empty">
+                                Empty
+                            </span>
+                        </td>
+
+                        <td>Truck 03</td>
+
+                        <td>10:00 AM</td>
+
+                    </tr>
+
+
+                    <!-- ROW 4 -->
+
+                    <tr
+                        class="clickable-row"
+                        onclick="goToPage('/binmanagement')">
+
+                        <td>BIN-004</td>
+
+                        <td>Tuggeranong</td>
+
+                        <td>
+                            <span class="status full">
+                                Full
+                            </span>
+                        </td>
+
+                        <td>Truck 01</td>
+
+                        <td>10:40 AM</td>
+
+                    </tr>
+
+
+                    <!-- ROW 5 -->
+
+                    <tr
+                        class="clickable-row"
+                        onclick="goToPage('/binmanagement')">
+
+                        <td>BIN-005</td>
+
+                        <td>Gungahlin</td>
+
+                        <td>
+                            <span class="status normal">
+                                Normal
+                            </span>
+                        </td>
+
+                        <td>Truck 04</td>
+
+                        <td>11:05 AM</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     DASHBOARD JAVASCRIPT
+========================== -->
+
+<script>
+
+    /*
+     * Navigate to another page
+     */
+
+    function goToPage(page) {
+        window.location.href = page;
+    }
+
+
+    /*
+     * Notification button
+     */
+
+    const notificationBtn =
+        document.getElementById("notificationBtn");
+
+    notificationBtn.addEventListener("click", function () {
+
+        alert(
+            "Notifications\n\n" +
+            "18 bins are currently full and require collection.\n" +
+            "8 collection trucks are registered in the system."
+        );
+
+    });
+
+
+    /*
+     * Add hover/click behaviour to dashboard cards
+     */
+
+    const cards =
+        document.querySelectorAll(".clickable-card");
+
+    cards.forEach(function (card) {
+
+        card.style.cursor = "pointer";
+
+    });
+
+
+    /*
+     * Make recent activity rows clickable
+     */
+
+    const rows =
+        document.querySelectorAll(".clickable-row");
+
+    rows.forEach(function (row) {
+
+        row.style.cursor = "pointer";
+
+    });
+
+</script>
+
+
+</body>
+</html>

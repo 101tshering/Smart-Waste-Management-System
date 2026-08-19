@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Users | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/user.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-recycle"></i>
+            <h2>Smart Waste</h2>
+        </div>
+
+        <nav>
+
+            <a href="/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="/binmanagement">
+                <i class="fa-solid fa-trash"></i>
+                Bin Management
+            </a>
+
+            <a href="/collection">
+                <i class="fa-solid fa-truck"></i>
+                Collection Trucks
+            </a>
+
+            <a href="/routes">
+                <i class="fa-solid fa-route"></i>
+                Routes
+            </a>
+
+            <a href="/reports">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </a>
+
+            <a href="/users" class="active">
+                <i class="fa-solid fa-users"></i>
+                Users
+            </a>
+
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>Users</h1>
+
+                <p>
+                    Manage system users and their access across Canberra.
+                </p>
+
+                <small>
+                    Wednesday, 5 August 2026
+                </small>
+
+            </div>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTROLS -->
+        <section class="controls">
+
+            <button class="btn-add" id="addUserBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add New User
+
+            </button>
+
+
+            <div class="search-section">
+
+                <input
+    type="text"
+    id="userSearch"
+    placeholder="Search User or Role">
+                <button id="filterBtn">
+    <i class="fa-solid fa-filter"></i>
+    Filter
+</button>
+
+            </div>
+
+        </section>
+
+
+        <!-- USERS TABLE -->
+        <section class="table-section">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>User ID</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Role</th>
+
+                        <th>Status</th>
+
+                        <th>Last Login</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <!-- USER 1 -->
+                    <tr>
+
+                        <td>USR001</td>
+
+                        <td>John Smith</td>
+
+                        <td>john.smith@smartwaste.com</td>
+
+                        <td>
+
+                            <span class="role admin-role">
+                                Administrator
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>08:30 AM</td>
+
+                        <td class="action-cell">
+
+                            <button class="edit-btn" title="Edit User">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn" title="Delete User">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- USER 2 -->
+                    <tr>
+
+                        <td>USR002</td>
+
+                        <td>Emma Wilson</td>
+
+                        <td>emma.wilson@smartwaste.com</td>
+
+                        <td>
+
+                            <span class="role operator-role">
+                                Waste Collector
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>09:15 AM</td>
+
+                        <td class="action-cell">
+
+                            <button class="edit-btn" title="Edit User">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn" title="Delete User">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- USER 3 -->
+                    <tr>
+
+                        <td>USR003</td>
+
+                        <td>Liam Brown</td>
+
+                        <td>liam.brown@smartwaste.com</td>
+
+                        <td>
+
+                            <span class="role manager-role">
+                                Manager
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>10:00 AM</td>
+
+                        <td class="action-cell">
+
+                            <button class="edit-btn" title="Edit User">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn" title="Delete User">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- USER 4 -->
+                    <tr>
+
+                        <td>USR004</td>
+
+                        <td>Sophia Lee</td>
+
+                        <td>sophia.lee@smartwaste.com</td>
+
+                        <td>
+
+                            <span class="role operator-role">
+                                Waste Collector
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status inactive-status">
+                                Inactive
+                            </span>
+
+                        </td>
+
+                        <td>Yesterday</td>
+
+                        <td class="action-cell">
+
+                            <button class="edit-btn" title="Edit User">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn" title="Delete User">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- USER 5 -->
+                    <tr>
+
+                        <td>USR005</td>
+
+                        <td>David Taylor</td>
+
+                        <td>david.taylor@smartwaste.com</td>
+
+                        <td>
+
+                            <span class="role manager-role">
+                                Manager
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>11:05 AM</td>
+
+                        <td class="action-cell">
+
+                            <button class="edit-btn" title="Edit User">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="delete-btn" title="Delete User">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- BOTTOM BAR -->
+            <div class="bottom-bar">
+
+                <p>
+                    Showing <strong>1–5</strong> of
+                    <strong>25</strong> users
+                </p>
+
+                <div class="pagination">
+
+    <button id="prevPage">Previous</button>
+
+    <button class="active-page page-btn">1</button>
+
+    <button class="page-btn">2</button>
+
+    <button class="page-btn">3</button>
+
+    <button class="page-btn">4</button>
+
+    <button id="nextPage">Next</button>
+
+</div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================
+     ADD NEW USER MODAL
+========================================= -->
+
+<div class="modal" id="userModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-user-plus"></i>
+                Add New User
+            </h2>
+
+            <button class="close-btn" id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="userForm">
+
+            <div class="form-group">
+
+                <label for="userName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Enter full name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="userEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="userEmail"
+                    placeholder="Enter email address"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="userRole">
+                    Role
+                </label>
+
+                <select id="userRole" required>
+
+                    <option value="">
+                        Select role
+                    </option>
+
+                    <option value="Administrator">
+                        Administrator
+                    </option>
+
+                    <option value="Manager">
+                        Manager
+                    </option>
+
+                    <option value="Waste Collector">
+                        Waste Collector
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="userStatus">
+                    Status
+                </label>
+
+                <select id="userStatus" required>
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Inactive">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add User
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+const addUserBtn = document.getElementById("addUserBtn");
+const userModal = document.getElementById("userModal");
+const closeModal = document.getElementById("closeModal");
+const cancelModal = document.getElementById("cancelModal");
+const userForm = document.getElementById("userForm");
+
+let editingRow = null;
+
+
+// ==========================================
+// OPEN ADD USER
+// ==========================================
+
+addUserBtn.addEventListener("click", function () {
+
+    editingRow = null;
+
+    userForm.reset();
+
+    document.getElementById("userStatus").value = "Active";
+
+    userModal.classList.add("show");
+
+});
+
+
+// ==========================================
+// CLOSE MODAL
+// ==========================================
+
+function closeUserModal() {
+
+    userModal.classList.remove("show");
+
+    editingRow = null;
+
+    userForm.reset();
+
+}
+
+closeModal.addEventListener("click", closeUserModal);
+
+cancelModal.addEventListener("click", closeUserModal);
+
+
+// ==========================================
+// CLICK OUTSIDE MODAL
+// ==========================================
+
+userModal.addEventListener("click", function (event) {
+
+    if (event.target === userModal) {
+        closeUserModal();
+    }
+
+});
+
+
+// ==========================================
+// ADD OR EDIT USER
+// ==========================================
+
+userForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("userName").value.trim();
+
+    const email =
+        document.getElementById("userEmail").value.trim();
+
+    const role =
+        document.getElementById("userRole").value;
+
+    const status =
+        document.getElementById("userStatus").value;
+
+
+    if (!name || !email || !role || !status) {
+
+        alert("Please complete all fields.");
+
+        return;
+
+    }
+
+
+    // ======================================
+    // EDIT EXISTING USER
+    // ======================================
+
+    if (editingRow) {
+
+        editingRow.cells[1].textContent = name;
+
+        editingRow.cells[2].textContent = email;
+
+
+        // Update role
+
+        const roleBadge =
+            editingRow.cells[3].querySelector(".role");
+
+        roleBadge.textContent = role;
+
+        roleBadge.className = "role";
+
+
+        if (role === "Administrator") {
+
+            roleBadge.classList.add("admin-role");
+
+        }
+        else if (role === "Manager") {
+
+            roleBadge.classList.add("manager-role");
+
+        }
+        else if (role === "Waste Collector") {
+
+            roleBadge.classList.add("operator-role");
+
+        }
+
+
+        // Update status
+
+        const statusBadge =
+            editingRow.cells[4].querySelector(".status");
+
+        statusBadge.textContent = status;
+
+        statusBadge.className = "status";
+
+
+        if (status === "Active") {
+
+            statusBadge.classList.add("active-status");
+
+        }
+        else {
+
+            statusBadge.classList.add("inactive-status");
+
+        }
+
+
+        alert("User updated successfully!");
+
+        closeUserModal();
+
+        return;
+
+    }
+
+
+    // ======================================
+    // ADD NEW USER
+    // ======================================
+
+    const tableBody =
+        document.querySelector("table tbody");
+
+    const rows =
+        tableBody.querySelectorAll("tr");
+
+
+    // Find highest User ID
+
+    let highestId = 0;
+
+
+    rows.forEach(function (row) {
+
+        const id =
+            row.cells[0].textContent.trim();
+
+        const number =
+            parseInt(id.replace("USR", ""));
+
+
+        if (!isNaN(number) && number > highestId) {
+
+            highestId = number;
+
+        }
+
+    });
+
+
+    const newUserId =
+        "USR" + String(highestId + 1).padStart(3, "0");
+
+
+    // Role class
+
+    let roleClass = "admin-role";
+
+
+    if (role === "Manager") {
+
+        roleClass = "manager-role";
+
+    }
+    else if (role === "Waste Collector") {
+
+        roleClass = "operator-role";
+
+    }
+
+
+    // Status class
+
+    const statusClass =
+        status === "Active"
+            ? "active-status"
+            : "inactive-status";
+
+
+    // Create new row
+
+    const newRow =
+        document.createElement("tr");
+
+
+    newRow.innerHTML = `
+
+        <td>${newUserId}</td>
+
+        <td>${name}</td>
+
+        <td>${email}</td>
+
+        <td>
+            <span class="role ${roleClass}">
+                ${role}
+            </span>
+        </td>
+
+        <td>
+            <span class="status ${statusClass}">
+                ${status}
+            </span>
+        </td>
+
+        <td>Just now</td>
+
+        <td class="action-cell">
+
+            <button
+                class="edit-btn"
+                title="Edit User">
+
+                <i class="fa-solid fa-pen"></i>
+
+            </button>
+
+            <button
+                class="delete-btn"
+                title="Delete User">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        </td>
+
+    `;
+
+
+    tableBody.appendChild(newRow);
+
+    setupRowButtons(newRow);
+
+    alert("User added successfully!");
+
+    closeUserModal();
+
+});
+
+
+// ==========================================
+// EDIT + DELETE BUTTONS
+// ==========================================
+
+function setupRowButtons(row) {
+
+
+    // EDIT
+
+    const editButton =
+        row.querySelector(".edit-btn");
+
+
+    editButton.addEventListener("click", function () {
+
+        editingRow = row;
+
+
+        document.getElementById("userName").value =
+            row.cells[1].textContent.trim();
+
+        document.getElementById("userEmail").value =
+            row.cells[2].textContent.trim();
+
+        document.getElementById("userRole").value =
+            row.cells[3].textContent.trim();
+
+        document.getElementById("userStatus").value =
+            row.cells[4].textContent.trim();
+
+
+        userModal.classList.add("show");
+
+    });
+
+
+    // DELETE
+
+    const deleteButton =
+        row.querySelector(".delete-btn");
+
+
+    deleteButton.addEventListener("click", function () {
+
+        const userName =
+            row.cells[1].textContent.trim();
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete " +
+                userName +
+                "?"
+            );
+
+
+        if (confirmed) {
+
+            row.remove();
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// ENABLE BUTTONS FOR EXISTING USERS
+// ==========================================
+
+document
+    .querySelectorAll("table tbody tr")
+    .forEach(function (row) {
+
+        setupRowButtons(row);
+
+    });
+// ==========================================
+// USER SEARCH
+// ==========================================
+
+const userSearch = document.getElementById("userSearch");
+
+userSearch.addEventListener("input", function () {
+
+    const searchText =
+        userSearch.value.toLowerCase().trim();
+
+    const rows =
+        document.querySelectorAll("table tbody tr");
+
+    rows.forEach(function (row) {
+
+        const rowText =
+            row.textContent.toLowerCase();
+
+        if (rowText.includes(searchText)) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+});
+// ==========================================
+// USER FILTER
+// ==========================================
+
+const filterBtn = document.getElementById("filterBtn");
+
+filterBtn.addEventListener("click", function () {
+
+    const rows =
+        document.querySelectorAll("table tbody tr");
+
+    const currentFilter =
+        filterBtn.getAttribute("data-filter");
+
+
+    // Show all users again
+    if (currentFilter === "manager") {
+
+        rows.forEach(function (row) {
+
+            row.style.display = "";
+
+        });
+
+        filterBtn.removeAttribute("data-filter");
+
+        filterBtn.innerHTML =
+            '<i class="fa-solid fa-filter"></i> Filter';
+
+        return;
+    }
+
+
+    // Show Managers only
+    rows.forEach(function (row) {
+
+        const role =
+            row.cells[3].textContent.trim();
+
+        if (role === "Manager") {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+
+    filterBtn.setAttribute("data-filter", "manager");
+
+    filterBtn.innerHTML =
+        '<i class="fa-solid fa-filter"></i> Managers';
+
+});
+// ==========================================
+// PAGINATION
+// ==========================================
+
+const rowsPerPage = 5;
+
+let currentPage = 1;
+
+const prevPage =
+    document.getElementById("prevPage");
+
+const nextPage =
+    document.getElementById("nextPage");
+
+const pageButtons =
+    document.querySelectorAll(".page-btn");
+
+
+function showPage(page) {
+
+    const rows =
+        Array.from(
+            document.querySelectorAll("table tbody tr")
+        );
+
+    const totalPages =
+        Math.ceil(rows.length / rowsPerPage);
+
+
+    // Keep page within valid range
+
+    if (page < 1) {
+        page = 1;
+    }
+
+    if (page > totalPages) {
+        page = totalPages;
+    }
+
+
+    currentPage = page;
+
+
+    // Hide/show rows
+
+    rows.forEach(function (row, index) {
+
+        const start =
+            (currentPage - 1) * rowsPerPage;
+
+        const end =
+            start + rowsPerPage;
+
+
+        if (index >= start && index < end) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+
+    // Update page buttons
+
+    pageButtons.forEach(function (button, index) {
+
+        if (index + 1 === currentPage) {
+
+            button.classList.add("active-page");
+
+        } else {
+
+            button.classList.remove("active-page");
+
+        }
+
+    });
+
+
+    // Previous button
+
+    prevPage.disabled =
+        currentPage === 1;
+
+
+    // Next button
+
+    nextPage.disabled =
+        currentPage === totalPages;
+
+}
+
+
+// Page buttons
+
+pageButtons.forEach(function (button, index) {
+
+    button.addEventListener("click", function () {
+
+        showPage(index + 1);
+
+    });
+
+});
+
+
+// Previous
+
+prevPage.addEventListener("click", function () {
+
+    showPage(currentPage - 1);
+
+});
+
+
+// Next
+
+nextPage.addEventListener("click", function () {
+
+    showPage(currentPage + 1);
+
+});
+
+
+// Start on page 1
+
+showPage(1);
+</script>
+
+</body>
+
+</html>

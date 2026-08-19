@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Collection Trucks | Smart Waste Management System</title>
+
+    <link rel="stylesheet" href="/css/collection.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+
+    <!-- ==========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-recycle"></i>
+
+            <h2>Smart Waste</h2>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/binmanagement">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Bin Management
+
+            </a>
+
+
+            <a href="/collection" class="active">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Collection Trucks
+
+            </a>
+
+
+            <a href="/routes">
+
+                <i class="fa-solid fa-route"></i>
+
+                Routes
+
+            </a>
+
+
+            <a href="/reports">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reports
+
+            </a>
+
+
+            <a href="/users">
+
+                <i class="fa-solid fa-users"></i>
+
+                Users
+
+            </a>
+
+
+            <a href="/">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Collection Trucks</h1>
+
+                <p>
+                    Manage waste collection trucks across Canberra.
+                </p>
+
+                <small>
+                    Wednesday, 5 August 2026
+                </small>
+
+            </div>
+
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell"></i>
+
+
+                <div class="admin">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==========================================
+             CONTROLS
+        ========================================== -->
+
+        <section class="controls">
+
+
+            <button
+                class="btn-add"
+                id="addTruckBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add New Truck
+
+            </button>
+
+
+            <div class="search-section">
+
+                <input
+                    type="text"
+                    id="truckSearch"
+                    placeholder="Search Truck ID or Driver">
+
+
+                <button id="filterBtn">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    Filter
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TRUCK TABLE
+        ========================================== -->
+
+        <section class="table-section">
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Truck ID</th>
+
+                        <th>Driver</th>
+
+                        <th>Capacity</th>
+
+                        <th>Status</th>
+
+                        <th>Current Route</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="truckTableBody">
+
+
+                    <!-- TRUCK 1 -->
+
+                    <tr>
+
+                        <td>TRK001</td>
+
+                        <td>John Smith</td>
+
+                        <td>10 Tons</td>
+
+                        <td>
+
+                            <span class="status available">
+
+                                Available
+
+                            </span>
+
+                        </td>
+
+                        <td>North Canberra</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Truck">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Truck">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- TRUCK 2 -->
+
+                    <tr>
+
+                        <td>TRK002</td>
+
+                        <td>Emma Wilson</td>
+
+                        <td>12 Tons</td>
+
+                        <td>
+
+                            <span class="status in-service">
+
+                                In Service
+
+                            </span>
+
+                        </td>
+
+                        <td>Belconnen</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Truck">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Truck">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- TRUCK 3 -->
+
+                    <tr>
+
+                        <td>TRK003</td>
+
+                        <td>Liam Brown</td>
+
+                        <td>9 Tons</td>
+
+                        <td>
+
+                            <span class="status available">
+
+                                Available
+
+                            </span>
+
+                        </td>
+
+                        <td>Gungahlin</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Truck">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Truck">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- TRUCK 4 -->
+
+                    <tr>
+
+                        <td>TRK004</td>
+
+                        <td>Sophia Lee</td>
+
+                        <td>11 Tons</td>
+
+                        <td>
+
+                            <span class="status maintenance">
+
+                                Maintenance
+
+                            </span>
+
+                        </td>
+
+                        <td>Woden</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Truck">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Truck">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- TRUCK 5 -->
+
+                    <tr>
+
+                        <td>TRK005</td>
+
+                        <td>Daniel Miller</td>
+
+                        <td>10 Tons</td>
+
+                        <td>
+
+                            <span class="status available">
+
+                                Available
+
+                            </span>
+
+                        </td>
+
+                        <td>Tuggeranong</td>
+
+                        <td>
+
+                            <button
+                                class="edit-btn"
+                                title="Edit Truck">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                class="delete-btn"
+                                title="Delete Truck">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+
+            <!-- ==========================================
+                 PAGINATION
+            ========================================== -->
+
+            <div class="bottom-bar">
+
+
+                <p id="truckCount">
+
+                    Showing
+                    <strong>1–5</strong>
+                    of
+                    <strong>5</strong>
+                    trucks
+
+                </p>
+
+
+                <div class="pagination">
+
+
+                    <button id="prevPage">
+
+                        Previous
+
+                    </button>
+
+
+                    <button
+                        class="active-page page-btn">
+
+                        1
+
+                    </button>
+
+
+                    <button class="page-btn">
+
+                        2
+
+                    </button>
+
+
+                    <button class="page-btn">
+
+                        3
+
+                    </button>
+
+
+                    <button id="nextPage">
+
+                        Next
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ==========================================
+     ADD / EDIT TRUCK MODAL
+========================================== -->
+
+<div
+    class="modal-overlay"
+    id="truckModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+
+            <h2 id="modalTitle">
+
+                Add New Truck
+
+            </h2>
+
+
+            <button
+                class="close-modal"
+                id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <form id="truckForm">
+
+
+            <!-- DRIVER -->
+
+            <div class="form-group">
+
+                <label for="truckDriver">
+
+                    Driver
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="truckDriver"
+                    placeholder="Enter driver name"
+                    required>
+
+            </div>
+
+
+
+            <!-- CAPACITY -->
+
+            <div class="form-group">
+
+                <label for="truckCapacity">
+
+                    Capacity
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="truckCapacity"
+                    min="1"
+                    placeholder="Enter capacity in tons"
+                    required>
+
+            </div>
+
+
+
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+                <label for="truckStatus">
+
+                    Status
+
+                </label>
+
+
+                <select
+                    id="truckStatus"
+                    required>
+
+                    <option value="Available">
+
+                        Available
+
+                    </option>
+
+                    <option value="In Service">
+
+                        In Service
+
+                    </option>
+
+                    <option value="Maintenance">
+
+                        Maintenance
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ROUTE -->
+
+            <div class="form-group">
+
+                <label for="truckRoute">
+
+                    Current Route
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="truckRoute"
+                    placeholder="Enter current route"
+                    required>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="modal-buttons">
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelModal">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    Save Truck
+
+                </button>
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script>
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const addTruckBtn =
+    document.getElementById("addTruckBtn");
+
+const truckModal =
+    document.getElementById("truckModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const cancelModal =
+    document.getElementById("cancelModal");
+
+const truckForm =
+    document.getElementById("truckForm");
+
+const truckTableBody =
+    document.getElementById("truckTableBody");
+
+const truckSearch =
+    document.getElementById("truckSearch");
+
+const filterBtn =
+    document.getElementById("filterBtn");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const truckDriver =
+    document.getElementById("truckDriver");
+
+const truckCapacity =
+    document.getElementById("truckCapacity");
+
+const truckStatus =
+    document.getElementById("truckStatus");
+
+const truckRoute =
+    document.getElementById("truckRoute");
+
+
+let editingRow = null;
+
+let currentFilter = "all";
+
+let currentPage = 1;
+
+const rowsPerPage = 5;
+
+
+
+/* ==========================================
+   OPEN ADD TRUCK
+========================================== */
+
+addTruckBtn.addEventListener(
+    "click",
+    function () {
+
+        editingRow = null;
+
+        modalTitle.textContent =
+            "Add New Truck";
+
+        truckForm.reset();
+
+        truckModal.classList.add("show");
+
+    }
+);
+
+
+
+/* ==========================================
+   CLOSE MODAL
+========================================== */
+
+function closeTruckModal() {
+
+    truckModal.classList.remove("show");
+
+    editingRow = null;
+
+    truckForm.reset();
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    closeTruckModal
+);
+
+
+cancelModal.addEventListener(
+    "click",
+    closeTruckModal
+);
+
+
+
+/* ==========================================
+   CLICK OUTSIDE MODAL
+========================================== */
+
+truckModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === truckModal) {
+
+            closeTruckModal();
+
+        }
+
+    }
+);
+
+
+
+/* ==========================================
+   NEXT TRUCK ID
+========================================== */
+
+function getNextTruckId() {
+
+    const rows =
+        truckTableBody.querySelectorAll("tr");
+
+
+    let highestNumber = 0;
+
+
+    rows.forEach(function (row) {
+
+        const id =
+            row.cells[0]
+                .textContent
+                .trim();
+
+
+        const number =
+            parseInt(
+                id.replace("TRK", "")
+            );
+
+
+        if (
+            !isNaN(number) &&
+            number > highestNumber
+        ) {
+
+            highestNumber = number;
+
+        }
+
+    });
+
+
+    return "TRK" +
+        String(highestNumber + 1)
+            .padStart(3, "0");
+
+}
+
+
+
+/* ==========================================
+   STATUS CLASS
+========================================== */
+
+function getStatusClass(status) {
+
+    if (status === "Available") {
+
+        return "available";
+
+    }
+
+
+    if (status === "In Service") {
+
+        return "in-service";
+
+    }
+
+
+    return "maintenance";
+
+}
+
+
+
+/* ==========================================
+   ADD / EDIT TRUCK
+========================================== */
+
+truckForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const driver =
+            truckDriver.value.trim();
+
+
+        const capacity =
+            parseInt(
+                truckCapacity.value
+            );
+
+
+        const status =
+            truckStatus.value;
+
+
+        const route =
+            truckRoute.value.trim();
+
+
+        if (
+            !driver ||
+            isNaN(capacity) ||
+            capacity <= 0 ||
+            !status ||
+            !route
+        ) {
+
+            alert(
+                "Please enter valid truck information."
+            );
+
+            return;
+
+        }
+
+
+
+        /* ======================================
+           EDIT EXISTING TRUCK
+        ====================================== */
+
+        if (editingRow) {
+
+
+            editingRow.cells[1]
+                .textContent =
+                driver;
+
+
+            editingRow.cells[2]
+                .textContent =
+                capacity + " Tons";
+
+
+            const statusBadge =
+                editingRow.cells[3]
+                    .querySelector(".status");
+
+
+            statusBadge.textContent =
+                status;
+
+
+            statusBadge.className =
+                "status " +
+                getStatusClass(status);
+
+
+            editingRow.cells[4]
+                .textContent =
+                route;
+
+
+            alert(
+                "Truck updated successfully!"
+            );
+
+
+            closeTruckModal();
+
+            applyFilters();
+
+            return;
+
+        }
+
+
+
+        /* ======================================
+           ADD NEW TRUCK
+        ====================================== */
+
+        const truckId =
+            getNextTruckId();
+
+
+        const newRow =
+            document.createElement("tr");
+
+
+        newRow.innerHTML = `
+
+            <td>${truckId}</td>
+
+            <td>${driver}</td>
+
+            <td>${capacity} Tons</td>
+
+            <td>
+
+                <span class="status ${getStatusClass(status)}">
+
+                    ${status}
+
+                </span>
+
+            </td>
+
+            <td>${route}</td>
+
+            <td>
+
+                <button
+                    class="edit-btn"
+                    title="Edit Truck">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    title="Delete Truck">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        truckTableBody.appendChild(newRow);
+
+
+        setupRowButtons(newRow);
+
+
+        alert(
+            "Truck added successfully!"
+        );
+
+
+        closeTruckModal();
+
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   EDIT + DELETE BUTTONS
+========================================== */
+
+function setupRowButtons(row) {
+
+
+    /* ======================================
+       EDIT
+    ====================================== */
+
+    const editButton =
+        row.querySelector(".edit-btn");
+
+
+    editButton.addEventListener(
+        "click",
+        function () {
+
+
+            editingRow = row;
+
+
+            modalTitle.textContent =
+                "Edit Truck";
+
+
+            truckDriver.value =
+                row.cells[1]
+                    .textContent
+                    .trim();
+
+
+            truckCapacity.value =
+                parseInt(
+                    row.cells[2]
+                        .textContent
+                );
+
+
+            truckStatus.value =
+                row.cells[3]
+                    .textContent
+                    .trim();
+
+
+            truckRoute.value =
+                row.cells[4]
+                    .textContent
+                    .trim();
+
+
+            truckModal.classList.add(
+                "show"
+            );
+
+        }
+    );
+
+
+
+    /* ======================================
+       DELETE
+    ====================================== */
+
+    const deleteButton =
+        row.querySelector(".delete-btn");
+
+
+    deleteButton.addEventListener(
+        "click",
+        function () {
+
+
+            const truckId =
+                row.cells[0]
+                    .textContent
+                    .trim();
+
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete " +
+                    truckId +
+                    "?"
+                );
+
+
+            if (confirmed) {
+
+                row.remove();
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   INITIALIZE EXISTING ROWS
+========================================== */
+
+document
+    .querySelectorAll(
+        "#truckTableBody tr"
+    )
+    .forEach(
+        function (row) {
+
+            setupRowButtons(row);
+
+        }
+    );
+
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+truckSearch.addEventListener(
+    "input",
+    function () {
+
+        currentPage = 1;
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   FILTER
+========================================== */
+
+filterBtn.addEventListener(
+    "click",
+    function () {
+
+
+        if (
+            currentFilter === "all"
+        ) {
+
+            currentFilter =
+                "available";
+
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Available';
+
+        }
+
+        else if (
+            currentFilter === "available"
+        ) {
+
+            currentFilter =
+                "in-service";
+
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> In Service';
+
+        }
+
+        else if (
+            currentFilter === "in-service"
+        ) {
+
+            currentFilter =
+                "maintenance";
+
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Maintenance';
+
+        }
+
+        else {
+
+            currentFilter =
+                "all";
+
+
+            filterBtn.innerHTML =
+                '<i class="fa-solid fa-filter"></i> Filter';
+
+        }
+
+
+        currentPage = 1;
+
+        applyFilters();
+
+    }
+);
+
+
+
+/* ==========================================
+   GET FILTERED ROWS
+========================================== */
+
+function getFilteredRows() {
+
+
+    const rows =
+        Array.from(
+            truckTableBody.querySelectorAll("tr")
+        );
+
+
+    const searchText =
+        truckSearch.value
+            .toLowerCase()
+            .trim();
+
+
+    return rows.filter(
+        function (row) {
+
+
+            const rowText =
+                row.textContent
+                    .toLowerCase();
+
+
+            const status =
+                row.cells[3]
+                    .querySelector(".status")
+                    .className;
+
+
+            const matchesSearch =
+                rowText.includes(
+                    searchText
+                );
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                status.includes(
+                    currentFilter
+                );
+
+
+            return (
+                matchesSearch &&
+                matchesFilter
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   APPLY FILTERS + PAGINATION
+========================================== */
+
+function applyFilters() {
+
+
+    const rows =
+        Array.from(
+            truckTableBody.querySelectorAll("tr")
+        );
+
+
+    const filteredRows =
+        getFilteredRows();
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredRows.length /
+                rowsPerPage
+            )
+        );
+
+
+    if (
+        currentPage > totalPages
+    ) {
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        rowsPerPage;
+
+
+    const end =
+        start +
+        rowsPerPage;
+
+
+    rows.forEach(
+        function (row) {
+
+            row.style.display =
+                "none";
+
+        }
+    );
+
+
+    filteredRows.forEach(
+        function (row, index) {
+
+            if (
+                index >= start &&
+                index < end
+            ) {
+
+                row.style.display =
+                    "";
+
+            }
+
+        }
+    );
+
+
+    updatePagination(
+        filteredRows.length,
+        totalPages
+    );
+
+}
+
+
+
+/* ==========================================
+   UPDATE PAGINATION
+========================================== */
+
+function updatePagination(
+    totalRows,
+    totalPages
+) {
+
+
+    const pageButtons =
+        document.querySelectorAll(
+            ".page-btn"
+        );
+
+
+    pageButtons.forEach(
+        function (button, index) {
+
+
+            const pageNumber =
+                index + 1;
+
+
+            if (
+                pageNumber <= totalPages
+            ) {
+
+                button.style.display =
+                    "inline-block";
+
+
+                button.textContent =
+                    pageNumber;
+
+
+                if (
+                    pageNumber ===
+                    currentPage
+                ) {
+
+                    button.classList.add(
+                        "active-page"
+                    );
+
+                }
+                else {
+
+                    button.classList.remove(
+                        "active-page"
+                    );
+
+                }
+
+            }
+            else {
+
+                button.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    const prevPage =
+        document.getElementById(
+            "prevPage"
+        );
+
+
+    const nextPage =
+        document.getElementById(
+            "nextPage"
+        );
+
+
+    prevPage.disabled =
+        currentPage === 1;
+
+
+    nextPage.disabled =
+        currentPage === totalPages;
+
+
+    const start =
+        totalRows === 0
+            ? 0
+            : ((currentPage - 1) *
+                rowsPerPage) + 1;
+
+
+    const end =
+        Math.min(
+            currentPage * rowsPerPage,
+            totalRows
+        );
+
+
+    document.getElementById(
+        "truckCount"
+    ).innerHTML =
+
+        "Showing <strong>" +
+        start +
+        "–" +
+        end +
+        "</strong> of <strong>" +
+        totalRows +
+        "</strong> trucks";
+
+}
+
+
+
+/* ==========================================
+   PAGE BUTTONS
+========================================== */
+
+document
+    .querySelectorAll(
+        ".page-btn"
+    )
+    .forEach(
+        function (button, index) {
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    currentPage =
+                        index + 1;
+
+                    applyFilters();
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* ==========================================
+   PREVIOUS BUTTON
+========================================== */
+
+document
+    .getElementById("prevPage")
+    .addEventListener(
+        "click",
+        function () {
+
+
+            if (
+                currentPage > 1
+            ) {
+
+                currentPage--;
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+
+
+/* ==========================================
+   NEXT BUTTON
+========================================== */
+
+document
+    .getElementById("nextPage")
+    .addEventListener(
+        "click",
+        function () {
+
+
+            const filteredRows =
+                getFilteredRows();
+
+
+            const totalPages =
+                Math.ceil(
+                    filteredRows.length /
+                    rowsPerPage
+                );
+
+
+            if (
+                currentPage <
+                totalPages
+            ) {
+
+                currentPage++;
+
+                applyFilters();
+
+            }
+
+        }
+    );
+
+
+
+/* ==========================================
+   INITIAL LOAD
+========================================== */
+
+applyFilters();
+
+</script>
+
+
+</body>
+
+</html>
